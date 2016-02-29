@@ -44,8 +44,12 @@ public class NaturalSortKeyTests extends NodeTestUtils {
 
         client("1").admin().cluster().prepareHealth().setWaitForGreenStatus().execute().actionGet();
 
+//        String[] words = new String[]{
+//                "Aob: 3 points", "bob: 10 points", "Cob: 2 points"
+//        };
+
         String[] words = new String[]{
-                "Bob: 3 points", "Bob: 10 points", "Bob: 2 points"
+                "啊啊", "饿了么", "洗澡", "心脏", "西南",  "波浪"
         };
 
         for (String word : words) {
@@ -62,10 +66,17 @@ public class NaturalSortKeyTests extends NodeTestUtils {
                 .addSort("points.sort", SortOrder.ASC)
                 .execute().actionGet();
 
-        assertEquals(3L, searchResponse.getHits().totalHits());
-        assertEquals("Bob: 2 points", searchResponse.getHits().getAt(0).field("points").getValue().toString());
-        assertEquals("Bob: 3 points", searchResponse.getHits().getAt(1).field("points").getValue().toString());
-        assertEquals("Bob: 10 points", searchResponse.getHits().getAt(2).field("points").getValue().toString());
+//        assertEquals(3L, searchResponse.getHits().totalHits());
+//        assertEquals("Aob: 3 points", searchResponse.getHits().getAt(0).field("points").getValue().toString());
+//        assertEquals("Bob: 10 points", searchResponse.getHits().getAt(1).field("points").getValue().toString());
+//        assertEquals("Cob: 2 points", searchResponse.getHits().getAt(2).field("points").getValue().toString());
+
+        assertEquals("啊啊", searchResponse.getHits().getAt(0).field("points").getValue().toString());
+        assertEquals("波浪", searchResponse.getHits().getAt(1).field("points").getValue().toString());
+        assertEquals("饿了么", searchResponse.getHits().getAt(2).field("points").getValue().toString());
+        assertEquals("西南", searchResponse.getHits().getAt(3).field("points").getValue().toString());
+        assertEquals("洗澡", searchResponse.getHits().getAt(4).field("points").getValue().toString());
+        assertEquals("心脏", searchResponse.getHits().getAt(5).field("points").getValue().toString());
     }
 
 

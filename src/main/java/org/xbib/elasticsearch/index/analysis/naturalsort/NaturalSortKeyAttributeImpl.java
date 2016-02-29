@@ -11,6 +11,28 @@ public class NaturalSortKeyAttributeImpl extends CharTermAttributeImpl {
 
     private final static Pattern numberPattern = Pattern.compile("(\\+|\\-)?([0-9]+)");
 
+//    static class IgnoreCaseComp implements Comparator<String> {
+//        Collator col;
+//        IgnoreCaseComp() {
+//            // Get a Collator for this locale.
+//            col = Collator.getInstance(); //工厂方法
+//            // Have it consider only primary differences.
+//            col.setStrength(Collator.PRIMARY);
+//        }
+//        // Uses Collator's compare() method to compare strings.
+//        public int compare(String strA, String strB) {
+//            return col.compare(strA, strB);//采用Collator的compare方法xi zao/ xin zang/ xi nan
+//        }
+//    }
+//
+//    public static void main(String[] args) {
+//
+//        List<String> chinese = Lists.newArrayList("啊啊", "饿了么", "洗澡", "心脏", "西南",  "波浪");
+//        Collections.sort(chinese, new IgnoreCaseComp());
+//        System.out.println(chinese);
+//
+//    }
+
     private final Collator collator;
 
     private final int digits;

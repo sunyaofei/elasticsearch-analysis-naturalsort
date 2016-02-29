@@ -9,7 +9,6 @@ import org.elasticsearch.index.analysis.AbstractIndexAnalyzerProvider;
 import org.elasticsearch.index.settings.IndexSettingsService;
 
 import java.text.Collator;
-import java.util.Locale;
 
 public class NaturalSortKeyAnalyzerProvider extends AbstractIndexAnalyzerProvider<NaturalSortKeyAnalyzer> {
 
@@ -39,6 +38,13 @@ public class NaturalSortKeyAnalyzerProvider extends AbstractIndexAnalyzerProvide
     }
 
     protected static Collator createCollator(Settings settings) {
-        return Collator.getInstance(new Locale(settings.get("locale", Locale.getDefault().toString())));
+        //return Collator.getInstance(new Locale(settings.get("locale", Locale.getDefault().toString())));
+
+        Collator col;
+        // Get a Collator for this locale.
+        col = Collator.getInstance(); //工厂方法
+        // Have it consider only primary differences.
+        col.setStrength(Collator.PRIMARY);
+        return col;
     }
 }
