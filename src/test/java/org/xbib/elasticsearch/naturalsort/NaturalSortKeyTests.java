@@ -11,6 +11,26 @@ import static org.junit.Assert.assertEquals;
 
 public class NaturalSortKeyTests extends NodeTestUtils {
 
+
+/*{
+  "type1": {
+    "properties": {
+      "points": {
+        "type": "string",
+        "fields": {
+          "sort": {
+            "type": "string",
+            "analyzer": "naturalsort"
+          }
+        }
+      }
+    }
+  }
+}*/
+    public static void main(String[] args) {
+        System.out.println("{ type1 : { properties : { points : { type : \"string\", fields : { sort : { type : \"string\", analyzer : \"naturalsort\" } } } } } }");
+    }
+
     @Test
     public void testSort() throws Exception {
         Settings settings = Settings.settingsBuilder()
@@ -72,7 +92,7 @@ public class NaturalSortKeyTests extends NodeTestUtils {
 
         client("1").admin().indices().prepareRefresh().execute().actionGet();
 
-            SearchResponse searchResponse = client("1").prepareSearch()
+        SearchResponse searchResponse = client("1").prepareSearch()
                     .addField("points")
                     .addSort("points.sort", SortOrder.ASC)
                     .execute().actionGet();

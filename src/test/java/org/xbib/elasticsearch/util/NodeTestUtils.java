@@ -23,7 +23,8 @@ public class NodeTestUtils {
 
     public static Node createNode() {
         Settings nodeSettings = Settings.settingsBuilder()
-                .put("path.home", System.getProperty("path.home"))
+//                .put("path.home", System.getProperty("path.home"))
+                .put("path.home", System.getProperty("user.dir"))
                 .put("client.type", "node")
                 .put("index.number_of_shards", 1)
                 .put("index.number_of_replica", 0)
@@ -57,7 +58,8 @@ public class NodeTestUtils {
     }
 
     private static void deleteFiles() throws IOException {
-        Path directory = Paths.get(System.getProperty("path.home") + "/data");
+//        Path directory = Paths.get(System.getProperty("path.home") + "/data");
+        Path directory = Paths.get(System.getProperty("user.dir") + "/data");
         Files.walkFileTree(directory, new SimpleFileVisitor<Path>() {
             @Override
             public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
