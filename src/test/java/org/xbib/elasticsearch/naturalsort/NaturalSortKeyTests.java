@@ -49,7 +49,7 @@ public class NaturalSortKeyTests extends NodeTestUtils {
 //        };
 
         String[] words = new String[]{
-                "啊啊", "饿了么", "洗澡", "心脏", "西南",  "波浪"
+                "啊啊", "饿了么", "洗澡", "心脏", "西南",  "波浪"/*, "奚孙孙", "张孙孙"*/
         };
 
         for (String word : words) {

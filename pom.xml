@@ -59,7 +59,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <github.global.server>github</github.global.server>
         <java.version>1.7</java.version>
-        <elasticsearch.version>2.1.1</elasticsearch.version>
+        <!--<elasticsearch.version>2.1.1</elasticsearch.version>-->
+        <elasticsearch.version>2.2.0</elasticsearch.version>
         <descriptor.javaVersion>${java.version}</descriptor.javaVersion>
         <descriptor.elasticsearchVersion>${elasticsearch.version}</descriptor.elasticsearchVersion>
         <descriptor.classname>org.xbib.elasticsearch.plugin.naturalsort.NaturalSortAnalysisPlugin</descriptor.classname>

@@ -40,11 +40,9 @@ public class NaturalSortKeyAnalyzerProvider extends AbstractIndexAnalyzerProvide
     protected static Collator createCollator(Settings settings) {
         //return Collator.getInstance(new Locale(settings.get("locale", Locale.getDefault().toString())));
 
-        Collator col;
-        // Get a Collator for this locale.
-        col = Collator.getInstance(); //工厂方法
-        // Have it consider only primary differences.
-        col.setStrength(Collator.PRIMARY);
-        return col;
+        Collator collator;
+        collator = Collator.getInstance();
+        collator.setStrength(Collator.PRIMARY);
+        return collator;
     }
 }

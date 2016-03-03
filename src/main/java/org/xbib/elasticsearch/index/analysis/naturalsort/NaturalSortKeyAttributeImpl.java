@@ -48,7 +48,8 @@ public class NaturalSortKeyAttributeImpl extends CharTermAttributeImpl {
     @Override
     public BytesRef getBytesRef() {
         byte[] collationKey = collator.getCollationKey(natural(toString())).toByteArray();
-        final BytesRef ref = this.builder.get();
+//        final BytesRef ref = this.builder.get();
+        final BytesRef ref = super.getBytesRef();
         ref.bytes = collationKey;
         ref.offset = 0;
         ref.length = collationKey.length;
