@@ -7,9 +7,12 @@ import java.text.Collator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ *
+ */
 public class NaturalSortKeyAttributeImpl extends CharTermAttributeImpl {
 
-    private final static Pattern numberPattern = Pattern.compile("(\\+|\\-)?([0-9]+)");
+    private static final Pattern numberPattern = Pattern.compile("(\\+|\\-)?([0-9]+)");
 
 //    static class IgnoreCaseComp implements Comparator<String> {
 //        Collator col;
@@ -62,15 +65,28 @@ public class NaturalSortKeyAttributeImpl extends CharTermAttributeImpl {
         int foundTokens = 0;
         while (m.find()) {
             int len = m.group(2).length();
-            String repl = String.format("%0" + digits + "d", len) + m.group();
+            String fmt = "%0" + digits + "d";
+            String repl = String.format(fmt, len) + m.group();
             m.appendReplacement(sb, repl);
-
             foundTokens++;
-            if (foundTokens >= maxTokens){
+            if (foundTokens >= maxTokens) {
                 break;
             }
         }
         m.appendTail(sb);
         return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        return object instanceof NaturalSortKeyAttributeImpl &&
+                collator.equals(((NaturalSortKeyAttributeImpl) object).collator) &&
+                Integer.compare(digits, ((NaturalSortKeyAttributeImpl) object).digits) == 0 &&
+                Integer.compare(maxTokens, ((NaturalSortKeyAttributeImpl) object).maxTokens) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return collator.hashCode() ^ Integer.hashCode(digits) ^ Integer.hashCode(maxTokens);
     }
 }
